@@ -1,35 +1,44 @@
 // 首先定义模型配置
 // 仅保留与你拥有的 API Key 相匹配的模型配置
 export const modelConfigs = [
+  // ... DeepSeek 和 GLM 的配置保持不变 ...
   {
-    model: "deepseek-chat", // DeepSeek V3 对话模型
-    apiKey: "DEEPSEEK_API_KEY", // 对应你 Cloudflare 环境变量里的名称
+    model: "deepseek-chat",
+    apiKey: "DEEPSEEK_API_KEY",
     baseURL: "https://api.deepseek.com/v1"
   },
   {
-    model: "deepseek-reasoner", // DeepSeek R1 推理模型（可选，如果你想用）
-    apiKey: "DEEPSEEK_API_KEY", // 使用同一个 Key
+    model: "deepseek-reasoner",
+    apiKey: "DEEPSEEK_API_KEY",
     baseURL: "https://api.deepseek.com/v1"
   },
   {
-    model: "glm-4-air", // 智谱 GLM-4 Air 模型
+    model: "glm-4-air",
     apiKey: "GLM_API_KEY",
     baseURL: "https://open.bigmodel.cn/api/paas/v4/"
   },
+  // ... 以下是需要更新的三个模型配置 ...
+
+  // 1. Gemini 配置 (更新模型名称为 2.0 Flash 并固定 Base URL)
   {
-    model: "gemini-1.5-pro", // Gemini 1.5 Pro 模型，模型名可在 Google AI Studio 确认
+    model: "gemini-2.0-flash", // 推荐使用这个新模型，响应快、效果好
     apiKey: "GEMINI_API_KEY",
-    baseURL: "https://generativelanguage.googleapis.com/v1beta" // 注意：Gemini 的 baseURL 比较特殊
+    baseURL: "https://generativelanguage.googleapis.com/v1beta" // 这个地址很固定，不用改
   },
+
+  // 2. GPT-4o 配置 (你的配置看起来没问题，如果还报错请告诉我)
   {
-    model: "claude-3-opus-20240229", // Claude 3 Opus，如果提示模型不存在，可能需要去七牛云文档查准确名称
-    apiKey: "QINIU_API_KEY",
-    baseURL: "https://anthropic.qnaigc.com" // 七牛云提供的 Anthropic 兼容端点
-  },
-  {
-    model: "gpt-4o", // OpenAI GPT-4o 模型
+    model: "gpt-4o", 
     apiKey: "OPENAI_API_KEY",
-    baseURL: "https://api.openai.com/v1" // 如果你用的是 OpenAI 官方 Key。如果用中转，请修改此地址。
+    baseURL: "https://api.openai.com/v1" // 这个地址没问题
+  },
+
+  // 3. Claude 配置 (根据七牛云的官方文档更新)
+  {
+    model: "claude-sonnet-4-6", // 在七牛云上，模型名直接用这个就行
+    apiKey: "QINIU_API_KEY",
+    baseURL: "https://api.qnaigc.com/v1" // 七牛云的官方 API 端点
+    // 注意：这里用的是七牛云的 OpenAI 兼容端点，不是之前的 Anthropic 专用端点
   }
 ] as const;
 
