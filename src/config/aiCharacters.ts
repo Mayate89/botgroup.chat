@@ -35,10 +35,10 @@ export const modelConfigs = [
 
   // 3. Claude 配置 (根据七牛云的官方文档更新)
   {
-    model: "claude-sonnet-4-6", // 在七牛云上，模型名直接用这个就行
-    apiKey: "QINIU_API_KEY",
-    baseURL: "https://api.qnaigc.com/v1" // 七牛云的官方 API 端点
     // 注意：这里用的是七牛云的 OpenAI 兼容端点，不是之前的 Anthropic 专用端点
+    model: "z-ai/glm-5.1", // 使用列表里确认存在的最新旗舰模型
+    apiKey: "QINIU_API_KEY",
+    baseURL: "https://api.qnaigc.com/v1"
   }
 ] as const;
 
